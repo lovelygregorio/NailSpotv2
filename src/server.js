@@ -81,9 +81,9 @@ export async function init() {
     validate: accountsController.validate,
   });
 
-  // JWT strategy for API authentication
+  // JWT strategy for API authentication 
   server.auth.strategy("jwt", "jwt", {
-    key: process.env.JWT_SECRET || process.env.cookie_password,
+    key: process.env.JWT_SECRET || process.env.cookie_password,  // use jwt secret from the env, if not avi use passwrod isntaead
     validate,
     verifyOptions: {
       algorithms: ["HS256"],
@@ -93,7 +93,7 @@ export async function init() {
   // Set the default authentication strategy to "session" for web routes
   server.auth.default("session");
 
-  await db.init("mongo");
+  await db.init("mongo"); 
 
   server.route(webRoutes);
   server.route(apiRoutes);
@@ -109,7 +109,7 @@ async function start() {
 }
 
 // Start the server if this file is run directly (not imported as a module)
-if (process.env.NODE_ENV !== "test") {
+if (process.env.NODE_ENV !== "test") { // only run this code if the app is NOT in test mode
   start().catch((err) => {
     console.log(err);
     process.exit(1);
