@@ -54,6 +54,9 @@ export const webRoutes = [
   { method: "GET", path: "/service/{id}/edit/{serviceid}", config: serviceController.index },
   { method: "POST", path: "/service/{id}/update/{serviceid}", config: serviceController.updateService },
 
+  // Review-related route for adding a review to a salon
+  { method: "POST", path: "/salon/{id}/addreview", config: salonController.addReview },
+  
   // Static file serving route for any paths not matched by the above routes, serving files from the "public" directory
   {
     method: "GET",

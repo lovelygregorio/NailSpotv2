@@ -26,11 +26,14 @@ export const salonController = {
       if (String(salon.userid) !== String(loggedInUser._id)) {
         return h.redirect("/dashboard");
       }
+      
+       const reviews = await db.reviewStore.getReviewsBySalonId(salon._id);
 
       // Render the salon details view with the retrieved salon information
       return h.view("salon-view", {
         title: "Salon Details",
         salon,
+        reviews,
       });
     },
   },
@@ -136,6 +139,24 @@ export const salonController = {
     },
   },
 
+  // Handler function to add a review to a salon
+  addReview: {
+  handler: async function (request, h) {
+
+    const loggedInUser = request.auth.credentials;
+
+    const review = {
+      comment: request.payload.comment,
+      rating: Number(request.payload.rating),
+      salonid: request.params.id,
+      user: loggedInUser._id,
+    };
+
+    await db.reviewStore.addReview(review);
+
+    return h.redirect(`/salon/${request.params.id}`);
+  },
+},
   
   // Handler function to delete a specific service from a salon
   deleteService: {

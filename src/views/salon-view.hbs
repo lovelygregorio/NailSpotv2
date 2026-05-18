@@ -89,29 +89,110 @@
       </form>
     </div>
 
-    <div class="box">
-      <h2 class="title is-5">Services</h2>
+<div class="box">
+  <h2 class="title is-5">Services, Reviews & Ratings</h2>
 
-      {{#if salon.servicesList}}
-        {{#each salon.servicesList}}
-          <div class="media mb-4">
-            <div class="media-content">
-              <p><strong>{{title}}</strong></p>
-              <p>{{category}}</p>
-              <p>€{{price}}</p>
-            </div>
-            <div class="media-right">
-              <a href="/service/{{../salon._id}}/edit/{{_id}}" class="button is-small is-warning">Edit</a>
-              <a href="/salon/{{../salon._id}}/deleteservice/{{_id}}" class="button is-small is-danger">Delete</a>
-            </div>
-          </div>
-        {{/each}}
+  <table class="table is-fullwidth is-hoverable">
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each salon.servicesList}}
+        <tr>
+          <td><strong>{{title}}</strong></td>
+          <td>{{category}}</td>
+          <td>€{{price}}</td>
+          <td>
+            <a href="/service/{{../salon._id}}/edit/{{_id}}" class="button is-small is-warning">Edit</a>
+            <a href="/salon/{{../salon._id}}/deleteservice/{{_id}}" class="button is-small is-danger">Delete</a>
+          </td>
+        </tr>
       {{else}}
-        <p>No services added yet.</p>
-      {{/if}}
+        <tr>
+          <td colspan="4">No services added yet.</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h3 class="title is-6">Add Customer Review</h3>
+
+  <form action="/salon/{{salon._id}}/addreview" method="POST">
+    <div class="columns is-vcentered">
+
+      <div class="column is-2">
+        <label class="label">Rating</label>
+        <div class="select is-fullwidth">
+          <select name="rating" required>
+            <option value="">Choose rating</option>
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="column">
+        <label class="label">Comment</label>
+        <input class="input" type="text" name="comment" placeholder="Write your review..." required>
+      </div>
+
+      <div class="column is-2">
+        <label class="label">&nbsp;</label>
+        <button class="button is-primary is-fullwidth">Add Review</button>
+      </div>
+
     </div>
-  </div>
-</section>
+  </form>
+
+  <hr>
+
+  <h3 class="title is-6">Customer Reviews</h3>
+
+  <table class="table is-fullwidth is-striped">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Rating</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each reviews}}
+        <tr>
+          <td>
+            {{#if rating}}
+              {{rating}} / 5 ⭐
+            {{else}}
+              No rating
+            {{/if}}
+          </td>
+          <td>
+            {{#if comment}}
+              {{comment}}
+            {{else}}
+              No comment added.
+            {{/if}}
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="2">No reviews yet.</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
