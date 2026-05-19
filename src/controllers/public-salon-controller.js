@@ -82,6 +82,17 @@ addFavourite: {
   },
 },
 
+removeFavourite: {
+  handler: async function (request, h) {
+    const loggedInUser = request.auth.credentials;
+
+    await db.userStore.removeFavourite(loggedInUser._id, request.params.id);
+
+    return h.redirect("/favourites");
+  },
+},
+
+
 favourites: {
   handler: async function (request, h) {
     const loggedInUser = request.auth.credentials;

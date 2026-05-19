@@ -79,6 +79,20 @@ async addFavourite(userId, salonId) {
   await user.save();
 },
 
+async removeFavourite(userId, salonId) {
+  const user = await User.findById(userId);
+
+  if (!user.favourites) {
+    user.favourites = [];
+  }
+
+  user.favourites = user.favourites.filter(
+    (id) => id.toString() !== salonId
+  );
+
+  await user.save();
+},
+
 // Retrieve the list of favourite salons for a specific user by their unique ID
 async getFavourites(userId) {
   const user = await User.findById(userId)

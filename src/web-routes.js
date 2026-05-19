@@ -67,6 +67,7 @@ export const webRoutes = [
   // Favourite-related routes for adding a salon to favourites and viewing the list of favourite salons
   { method: "GET", path: "/salon/{id}/favourite", config: publicSalonController.addFavourite, },
   { method: "GET", path: "/favourites", config: publicSalonController.favourites,},
+  { method: "GET", path: "/salon/{id}/remove-favourite", config: publicSalonController.removeFavourite, },
 
   // Static file serving route for any paths not matched by the above routes, serving files from the "public" directory
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" }, }, options: { auth: false },},
