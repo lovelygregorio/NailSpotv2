@@ -64,6 +64,10 @@ export const webRoutes = [
   { method: "GET", path: "/public-salon/{id}", config: publicSalonController.viewSalon, },
   { method: "POST", path: "/public-salon/{id}/addreview", config: publicSalonController.addReview,},
 
+  // Favourite-related routes for adding a salon to favourites and viewing the list of favourite salons
+  { method: "GET", path: "/salon/{id}/favourite", config: publicSalonController.addFavourite, },
+  { method: "GET", path: "/favourites", config: publicSalonController.favourites,},
+
   // Static file serving route for any paths not matched by the above routes, serving files from the "public" directory
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" }, }, options: { auth: false },},
 ];

@@ -65,6 +65,7 @@ export const salonController = {
         latitude: Number(request.payload.latitude || 53.3498),
         longitude: Number(request.payload.longitude || -6.2603),
         categoryid: category._id,
+        image: request.payload.image,
         userid: loggedInUser._id,
       };
 
@@ -101,6 +102,7 @@ export const salonController = {
         longitude: Number(request.payload.longitude || -6.2603),
         categoryid: salon.categoryid,
         userid: salon.userid,
+        image: request.payload.image,
       };
       
       // Update the salon in the database with the new details

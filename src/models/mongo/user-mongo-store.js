@@ -62,5 +62,30 @@ export const userMongoStore = {
   // Delete all users from the MongoDB collection (used for testing or resetting data)
  async deleteAll() {
     await User.deleteMany({});// ignore bad ids
+  },
+
+  // Add a salon to the user's list of favourite salons by their unique IDs
+async addFavourite(userId, salonId) {
+  const user = await User.findById(userId);
+
+  if (!user.favourites) {
+    user.favourites = [];
   }
+
+  if (!user.favourites.includes(salonId)) {
+    user.favourites.push(salonId);
+  }
+
+  await user.save();
+},
+
+// Retrieve the list of favourite salons for a specific user by their unique ID
+async getFavourites(userId) {
+  const user = await User.findById(userId)
+    .populate("favourites")
+    .lean();
+
+  return user.favourites || [];
+},
+
 };

@@ -5,14 +5,55 @@
     <h1 class="title">Explore Dublin Nail Salons</h1>
     <p class="subtitle">Browse public nail salons and community reviews.</p>
 
+    <div class="box mb-5">
+  <form action="/public-salons" method="GET">
+
+    <div class="columns">
+
+      <div class="column">
+        <input
+          class="input"
+          type="text"
+          name="search"
+          placeholder="Search salon..."
+          value="{{search}}"
+        >
+      </div>
+
+      <div class="column">
+        <div class="select is-fullwidth">
+          <select name="area">
+            <option value="">All Areas</option>
+            <option value="Central Dublin">Central Dublin</option>
+            <option value="South Dublin">South Dublin</option>
+            <option value="North Dublin">North Dublin</option>
+            <option value="West Dublin">West Dublin</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="column">
+        <button class="button is-primary is-fullwidth">
+          Search
+        </button>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+
+
+
     <div class="columns is-multiline">
       {{#each salons}}
         <div class="column is-half">
-          <div class="box">
+        <div class="box public-salon-card">
             <h2 class="title is-5">{{name}}</h2>
             {{#if image}}
-  <figure class="image mb-3">
-    <img src="{{image}}" alt="{{name}}" style="height: 180px; width: 100%; object-fit: cover; border-radius: 12px;">
+  <figure class="image mb-4">
+    <img src="{{image}}" alt="{{name}}"
+      style=" height: 220px; width: 100%; object-fit: cover; border-radius: 14px;">
   </figure>
 {{/if}}
             <p><strong>Area:</strong> {{area}}</p>
@@ -23,6 +64,9 @@
             <a href="/public-salon/{{_id}}" class="button is-primary is-small mt-3">
               View Public Details
             </a>
+            <a href="/salon/{{_id}}/favourite" class="button is-small is-light">
+  ❤️ Save
+</a>
           </div>
         </div>
       {{else}}

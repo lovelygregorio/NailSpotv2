@@ -8,11 +8,26 @@ export const publicSalonController = {
 
     handler: async function (request, h) {
 
-      const salons = await db.salonStore.getAllSalons();
+let salons = await db.salonStore.getAllSalons();
+
+const search = request.query.search || "";
+const area = request.query.area || "";
+
+if (search) {
+  salons = salons.filter((salon) =>
+    salon.name.toLowerCase().includes(search.toLowerCase())
+  );
+}
+
+if (area) {
+  salons = salons.filter((salon) => salon.area === area);
+}
 
       return h.view("public-salons-view", {
         title: "Explore Dublin Nail Salons",
         salons,
+        search,
+        area, 
       });
     },
   },
@@ -57,5 +72,27 @@ export const publicSalonController = {
       return h.redirect(`/public-salon/${request.params.id}`);
     },
   },
+addFavourite: {
+  handler: async function (request, h) {
+    const loggedInUser = request.auth.credentials;
+
+    await db.userStore.addFavourite(loggedInUser._id, request.params.id);
+
+    return h.redirect("/public-salons");
+  },
+},
+
+favourites: {
+  handler: async function (request, h) {
+    const loggedInUser = request.auth.credentials;
+
+    const favourites = await db.userStore.getFavourites(loggedInUser._id);
+
+    return h.view("favourites-view", {
+      title: "My Favourite Salons",
+      favourites,
+    });
+  },
+},
 
 };

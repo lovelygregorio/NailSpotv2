@@ -1,0 +1,42 @@
+{{> menu}}
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">❤️ My Favourite Salons</h1>
+
+    <div class="columns is-multiline">
+      {{#each favourites}}
+        <div class="column is-half">
+          <div class="box pink-card">
+
+            {{#if image}}
+              <figure class="image mb-3">
+                <img
+                  src="{{image}}"
+                  alt="{{name}}"
+                  style="height:200px; width:100%; object-fit:cover; border-radius:12px;"
+                >
+              </figure>
+            {{/if}}
+
+            <h2 class="title is-5">{{name}}</h2>
+
+            <p><strong>Area:</strong> {{area}}</p>
+            <p><strong>Address:</strong> {{address}}</p>
+            <p><strong>Services:</strong> {{services}}</p>
+
+            <a
+              href="/public-salon/{{_id}}"
+              class="button is-primary is-small mt-3"
+            >
+              View Details
+            </a>
+
+          </div>
+        </div>
+      {{else}}
+        <p>No favourites saved yet.</p>
+      {{/each}}
+    </div>
+  </div>
+</section>

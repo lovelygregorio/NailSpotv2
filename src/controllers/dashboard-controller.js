@@ -71,6 +71,69 @@ const dublinDemoSalons = [
     image: "/images/orchid.png",
     categoryTitle: "Nail Art",
   },
+  {
+  name: "Velvet Nails Dublin",
+  area: "North Dublin",
+  address: "Drumcondra Road, Dublin 9",
+  services: "BIAB, Gel Extensions",
+  rating: 5,
+  notes: "Modern salon popular for BIAB and minimalist nail art.",
+  latitude: 53.3702,
+  longitude: -6.2520,
+  image: "/images/velvet.jpg",
+  categoryTitle: "BIAB Nails",
+},
+{
+  name: "Pink Lotus Nails",
+  area: "South Dublin",
+  address: "Stillorgan Village, Dublin",
+  services: "Acrylic, Nail Art",
+  rating: 4,
+  notes: "Luxury nail art salon with trendy seasonal designs.",
+  latitude: 53.2905,
+  longitude: -6.2158,
+  image: "/images/pinklotus.jpg",
+  categoryTitle: "Nail Art",
+},
+
+{
+  name: "Glow Beauty Studio",
+  area: "Central Dublin",
+  address: "Talbot Street, Dublin 1",
+  services: "Gel Polish, Manicure",
+  rating: 4,
+  notes: "Affordable express manicure salon in the city centre.",
+  latitude: 53.3501,
+  longitude: -6.2525,
+  image: "/images/glowstudio.jpg",
+  categoryTitle: "Gel Nails",
+},
+
+{
+  name: "Diamond Nails & Spa",
+  area: "West Dublin",
+  address: "Blanchardstown Centre, Dublin 15",
+  services: "Spa Pedicure, Acrylic",
+  rating: 5,
+  notes: "Spacious salon known for relaxing spa pedicures.",
+  latitude: 53.3937,
+  longitude: -6.3910,
+  image: "/images/diamond.jpg",
+  categoryTitle: "Spa Nails",
+},
+
+{
+  name: "Cloud Nine Nails",
+  area: "South Dublin",
+  address: "Sandyford Village, Dublin 18",
+  services: "BIAB, Gel Polish",
+  rating: 4,
+  notes: "Clean aesthetic salon with soft neutral nail styles.",
+  latitude: 53.2745,
+  longitude: -6.2257,
+  image: "/images/cloudnine.jpg",
+  categoryTitle: "BIAB Nails",
+},
 ];
 
 // Helper function to build the dashboard view data for the logged-in user
@@ -145,6 +208,7 @@ export const dashboardController = {
         latitude: Number(request.payload.latitude || 53.3498),
         longitude: Number(request.payload.longitude || -6.2603),
         categoryid: request.payload.categoryid,
+        image: request.payload.image,
         userid: loggedInUser._id,
       };
 
@@ -155,19 +219,18 @@ export const dashboardController = {
 
   // Handler function to load demo salon data for the logged-in user
   loadDemoData: {
-    handler: async function (request, h) {
-      const loggedInUser = request.auth.credentials;
-      const existingSalons = await db.salonStore.getUserSalons(loggedInUser._id);
+     handler: async function (request, h) {
+    const loggedInUser = request.auth.credentials;
 
-      for (const salon of dublinDemoSalons) {
-        const alreadyExists = existingSalons.find(
-          (existingSalon) => existingSalon.name === salon.name
-        );
+    await db.salonStore.deleteAllSalons();
 
-        if (!alreadyExists) {
-          // Get or create the matching category for this demo salo
-          // eslint-disable-next-line no-await-in-loop
-          const category = await getOrCreateCategory(loggedInUser._id, salon.categoryTitle);
+    for (const salon of dublinDemoSalons) {
+
+      // eslint-disable-next-line no-await-in-loop
+      const category = await getOrCreateCategory(
+        loggedInUser._id,
+        salon.categoryTitle
+      );
 
           const salonData = {
             name: salon.name,
@@ -179,6 +242,7 @@ export const dashboardController = {
             latitude: salon.latitude,
             longitude: salon.longitude,
             categoryid: category._id,
+            image: salon.image,
             userid: loggedInUser._id,
           };
 
@@ -186,7 +250,6 @@ export const dashboardController = {
           // add the salon to the database if it doesn't already exist for the user
           await db.salonStore.addSalon(salonData);
         }
-      }
 
       return h.redirect("/salons");
     },

@@ -16,6 +16,13 @@ const userSchema = new Schema({
   lastName: String,
   email: String,
   password: String,
+  
+  favourites: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Salon",
+    },
+  ],
 });
 
 // Static method to find a user by their email address
