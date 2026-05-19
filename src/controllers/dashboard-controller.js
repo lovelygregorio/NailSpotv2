@@ -20,6 +20,7 @@ const dublinDemoSalons = [
     notes: "Friendly staff and central location.",
     latitude: 53.35031,
     longitude: -6.2612,
+    image: "/images/tropical.png",
     categoryTitle: "Acrylic",
   },
   {
@@ -31,10 +32,11 @@ const dublinDemoSalons = [
     notes: "Great for quick city centre appointments.",
     latitude: 53.34185,
     longitude: -6.25973,
+    image: "/images/5thave.png",
     categoryTitle: "Manicure",
   },
   {
-    name: "Fifth Avenue Nail Boutique",
+    name: "Nail Botique Station",
     area: "South Dublin",
     address: "Dundrum Town Centre, Dublin 16",
     services: "BIAB, Gel",
@@ -42,6 +44,7 @@ const dublinDemoSalons = [
     notes: "Popular BIAB option for south Dublin.",
     latitude: 53.28666,
     longitude: -6.24252,
+    image: "/images/nails.jpg",
     categoryTitle: "BIAB",
   },
   {
@@ -53,6 +56,7 @@ const dublinDemoSalons = [
     notes: "Student-friendly salon with good value.",
     latitude: 53.32269,
     longitude: -6.26556,
+    image: "/images/mint.png",
     categoryTitle: "Gel Nails",
   },
   {
@@ -64,6 +68,7 @@ const dublinDemoSalons = [
     notes: "Known for detailed nail art designs.",
     latitude: 53.34545,
     longitude: -6.26472,
+    image: "/images/orchid.png",
     categoryTitle: "Nail Art",
   },
 ];

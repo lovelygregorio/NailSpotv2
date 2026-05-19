@@ -1,0 +1,33 @@
+{{> menu}}
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">Explore Dublin Nail Salons</h1>
+    <p class="subtitle">Browse public nail salons and community reviews.</p>
+
+    <div class="columns is-multiline">
+      {{#each salons}}
+        <div class="column is-half">
+          <div class="box">
+            <h2 class="title is-5">{{name}}</h2>
+            {{#if image}}
+  <figure class="image mb-3">
+    <img src="{{image}}" alt="{{name}}" style="height: 180px; width: 100%; object-fit: cover; border-radius: 12px;">
+  </figure>
+{{/if}}
+            <p><strong>Area:</strong> {{area}}</p>
+            <p><strong>Address:</strong> {{address}}</p>
+            <p><strong>Services:</strong> {{services}}</p>
+            <p><strong>Notes:</strong> {{notes}}</p>
+
+            <a href="/public-salon/{{_id}}" class="button is-primary is-small mt-3">
+              View Public Details
+            </a>
+          </div>
+        </div>
+      {{else}}
+        <p>No public salons available yet.</p>
+      {{/each}}
+    </div>
+  </div>
+</section>

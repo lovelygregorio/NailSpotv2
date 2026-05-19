@@ -142,17 +142,25 @@ export const salonController = {
   // Handler function to add a review to a salon
   addReview: {
   handler: async function (request, h) {
-
     const loggedInUser = request.auth.credentials;
+    const salon = await db.salonStore.getSalonById(request.params.id);
 
-    const review = {
-      comment: request.payload.comment,
+    if (!salon) {
+      return h.redirect("/dashboard");
+    }
+
+    if (String(salon.userid) !== String(loggedInUser._id)) {
+      return h.redirect("/dashboard");
+    }
+
+    const newReview = {
+      salonid: salon._id,
       rating: Number(request.payload.rating),
-      salonid: request.params.id,
+      comment: request.payload.comment,
       user: loggedInUser._id,
     };
 
-    await db.reviewStore.addReview(review);
+    await db.reviewStore.addReview(newReview);
 
     return h.redirect(`/salon/${request.params.id}`);
   },
@@ -178,4 +186,22 @@ export const salonController = {
       return h.redirect(`/salon/${request.params.id}`);
     },
   },
+  deleteReview: {
+  handler: async function (request, h) {
+    const loggedInUser = request.auth.credentials;
+    const salon = await db.salonStore.getSalonById(request.params.id);
+
+    if (!salon) {
+      return h.redirect("/dashboard");
+    }
+
+    if (String(salon.userid) !== String(loggedInUser._id)) {
+      return h.redirect("/dashboard");
+    }
+
+    await db.reviewStore.deleteReviewById(request.params.reviewid);
+
+    return h.redirect(`/salon/${request.params.id}`);
+  },
+},
 };

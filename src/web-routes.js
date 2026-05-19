@@ -13,6 +13,7 @@ import { salonController } from "./controllers/salon-controller.js";
 import { allsalonsController } from "./controllers/allsalons-controller.js";
 import { serviceController } from "./controllers/service-controller.js";
 import { categoryController } from "./controllers/category-controller.js";
+import { publicSalonController } from "./controllers/public-salon-controller.js";
 
 //
 export const webRoutes = [
@@ -56,14 +57,13 @@ export const webRoutes = [
 
   // Review-related route for adding a review to a salon
   { method: "POST", path: "/salon/{id}/addreview", config: salonController.addReview },
+  { method: "GET", path: "/salon/{id}/deletereview/{reviewid}", config: salonController.deleteReview },
   
+  // Public-facing route for viewing salon details
+  { method: "GET", path: "/public-salons", config: publicSalonController.index,},
+  { method: "GET", path: "/public-salon/{id}", config: publicSalonController.viewSalon, },
+  { method: "POST", path: "/public-salon/{id}/addreview", config: publicSalonController.addReview,},
+
   // Static file serving route for any paths not matched by the above routes, serving files from the "public" directory
-  {
-    method: "GET",
-    path: "/{param*}",
-    handler: {
-      directory: { path: "./public" },
-    },
-    options: { auth: false },
-  },
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" }, }, options: { auth: false },},
 ];

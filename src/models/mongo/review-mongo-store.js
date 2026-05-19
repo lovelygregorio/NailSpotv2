@@ -3,11 +3,12 @@ import { Review } from './review.js';
 export const reviewMongoStore = { // Define the reviewMongoStore object
     async addReview(review) { // Method to add a new review
         const newReview = new Review(review);
-        return await newReview.save();
+        await newReview.save();
+        return newReview;
     },
 
     async getReviewsBySalonId(salonId) { // Method to get reviews by salon ID
-        return await Review.find({ salonid: salonId }).populate('user', 'name'); // Populate the user field with the user's name
+        return await Review.find({ salonid: salonId }).lean(); // Populate the user field with the user's name
     },
 
     async deleteReviewById(reviewId) { // Method to delete a review by ID
