@@ -1,0 +1,72 @@
+<section class="section">
+  <div class="container">
+
+    <h1 class="title">💅 Community Nail Gallery</h1>
+
+    <form action="/gallery/add" method="POST" class="box pink-card mb-5">
+
+      <div class="field">
+        <label class="label">Title</label>
+        <input class="input" name="title">
+      </div>
+
+      <div class="field">
+        <label class="label">Image URL</label>
+        <input class="input" name="image">
+      </div>
+
+      <div class="field">
+        <label class="label">Caption</label>
+        <textarea class="textarea" name="caption"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="label">Style</label>
+        <input class="input" name="style">
+      </div>
+
+      <div class="field">
+        <label class="label">Salon</label>
+        <input class="input" name="salonName">
+      </div>
+
+      <button class="button is-primary">
+        Share Inspiration
+      </button>
+
+    </form>
+
+    <div class="columns is-multiline">
+
+      {{#each posts}}
+        <div class="column is-one-third">
+
+          <div class="box pink-card">
+
+            <figure class="image mb-3">
+              <img
+                src="{{image}}"
+                style="height:250px; object-fit:cover; border-radius:12px;"
+              >
+            </figure>
+
+            <h2 class="title is-5">{{title}}</h2>
+
+            <p>{{caption}}</p>
+
+            <p class="mt-2">
+              <strong>Style:</strong> {{style}}
+            </p>
+
+            <p>
+              <strong>Salon:</strong> {{salonName}}
+            </p>
+
+          </div>
+        </div>
+      {{/each}}
+
+    </div>
+
+  </div>
+</section>

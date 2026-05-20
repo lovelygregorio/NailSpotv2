@@ -17,6 +17,7 @@ import { categoryMongoStore } from "./mongo/category-mongo-store.js";
 
 import { connectMongo } from "./mongo/connect.js";
 import { reviewMongoStore } from "./mongo/review-mongo-store.js";
+import { galleryMongoStore } from "./mongo/gallery-mongo-store.js";
 
 // Exported object containing the database configuration and methods to initialize the data stores
 export const db = {
@@ -27,11 +28,13 @@ export const db = {
   serviceStore: serviceMongoStore,
   categoryStore: categoryMongoStore,
   reviewStore: reviewMongoStore,
+  galleryStore: galleryMongoStore,
 
   // Initialize the data stores based on the specified store type 
   async init(storeType) {
     switch (storeType) {
       case "mongo":
+        
         // Set the data store properties to use the MongoDB implementations for users, salons, services, and categories
         this.userStore = userMongoStore;
         this.salonStore = salonMongoStore;

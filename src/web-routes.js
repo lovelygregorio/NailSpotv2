@@ -14,6 +14,7 @@ import { allsalonsController } from "./controllers/allsalons-controller.js";
 import { serviceController } from "./controllers/service-controller.js";
 import { categoryController } from "./controllers/category-controller.js";
 import { publicSalonController } from "./controllers/public-salon-controller.js";
+import { galleryController } from "./controllers/gallery-controller.js";
 
 //
 export const webRoutes = [
@@ -69,6 +70,10 @@ export const webRoutes = [
   { method: "GET", path: "/favourites", config: publicSalonController.favourites,},
   { method: "GET", path: "/salon/{id}/remove-favourite", config: publicSalonController.removeFavourite, },
 
+  // Gallery-related routes for adding a photo to a salon's gallery and deleting a photo from the gallery
+  { method: "GET", path: "/gallery", config: galleryController.index, },
+  { method: "POST", path: "/gallery/add", config: galleryController.addPost, },
+  
   // Static file serving route for any paths not matched by the above routes, serving files from the "public" directory
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" }, }, options: { auth: false },},
 ];
