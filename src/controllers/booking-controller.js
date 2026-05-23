@@ -52,5 +52,19 @@ export const bookingController = {
       return h.redirect("/bookings");
     },
   },
+  
+  accept: {
+  handler: async function (request, h) {
+    await db.bookingStore.updateBookingStatus(request.params.id, "Booked");
+    return h.redirect("/dashboard");
+  },
+},
+
+reject: {
+  handler: async function (request, h) {
+    await db.bookingStore.updateBookingStatus(request.params.id, "Rejected");
+    return h.redirect("/dashboard");
+  },
+},
 
 };

@@ -81,7 +81,7 @@ export const webRoutes = [
   // Booking-related routes for viewing the booking board, adding a new booking, and deleting a booking
   { method: "GET", path: "/bookings", options: { auth: "session" }, handler: bookingController.index.handler },
   { method: "POST", path: "/bookings/add",options: { auth: "session" }, handler: bookingController.addBooking.handler,},
-  { method: "POST", path: "/bookings/cancel/{id}",  options: { auth: "session" }, handler: bookingController.cancelBooking.handler,}
+  { method: "POST", path: "/bookings/cancel/{id}",  options: { auth: "session" }, handler: bookingController.cancelBooking.handler,},
 
   // Static file serving route for any paths not matched by the above routes, serving files from the "public" directory
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" }, }, options: { auth: false },},

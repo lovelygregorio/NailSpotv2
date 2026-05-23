@@ -139,13 +139,19 @@ const dublinDemoSalons = [
 // Helper function to build the dashboard view data for the logged-in user
 async function buildDashboardView(loggedInUser) {
   const salons = await db.salonStore.getUserSalons(loggedInUser._id);
-  const categories = await db.categoryStore.getUserCategories(loggedInUser._id);
+
+  const categories = await db.categoryStore.getUserCategories(
+    loggedInUser._id
+  );
+
+  const bookings = await db.bookingStore.getAllBookings();
 
   return {
     title: "NailSpot Dublin Dashboard",
     user: loggedInUser,
     salons,
     categories,
+    bookings,
     salonsJson: JSON.stringify(salons),
   };
 }
