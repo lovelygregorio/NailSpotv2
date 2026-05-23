@@ -15,6 +15,7 @@ import { serviceController } from "./controllers/service-controller.js";
 import { categoryController } from "./controllers/category-controller.js";
 import { publicSalonController } from "./controllers/public-salon-controller.js";
 import { galleryController } from "./controllers/gallery-controller.js";
+import { bookingController } from "./controllers/booking-controller.js";
 
 //
 export const webRoutes = [
@@ -77,6 +78,12 @@ export const webRoutes = [
   { method: "POST", path: "/gallery/comment/{id}", config: galleryController.addComment,},
   { method: "POST", path: "/gallery/comment/delete/{postId}/{commentId}", options: { auth: "session",},handler: galleryController.deleteComment.handler,},
   
+  // Booking-related routes for viewing the booking board, adding a new booking, and deleting a booking
+  { method: "GET", path: "/bookings", options: { auth: "session" }, handler: bookingController.index.handler },
+  { method: "POST", path: "/bookings/add",options: { auth: "session" }, handler: bookingController.addBooking.handler,},
+  { method: "POST", path: "/bookings/cancel/{id}",  options: { auth: "session" }, handler: bookingController.cancelBooking.handler,}
+
   // Static file serving route for any paths not matched by the above routes, serving files from the "public" directory
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" }, }, options: { auth: false },},
 ];
+
