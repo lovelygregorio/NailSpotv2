@@ -43,9 +43,15 @@
   </form>
 </div>
 
+<!-- PUBLIC SALON MAP -->
+<div class="box mb-5">
+  <h2 class="title is-5">Dublin Nail Salon Map</h2>
 
+  <div  id="public-salons-map"  style="height: 250px; border-radius: 14px;"></div>
+</div>
 
-    <div class="columns is-multiline">
+<div class="columns is-multiline">
+
       {{#each salons}}
         <div class="column is-half">
         <div class="box public-salon-card">
@@ -75,3 +81,47 @@
     </div>
   </div>
 </section>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  const salons = {{{salonsJson}}} || [];
+
+  const map = L.map("public-salons-map").setView([53.3498, -6.2603], 12);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(map);
+
+  const bounds = [];
+
+  salons.forEach((salon) => {
+
+    const lat = Number(salon.latitude);
+    const lng = Number(salon.longitude);
+
+    if (lat && lng) {
+
+      bounds.push([lat, lng]);
+
+      L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(`
+          <strong>${salon.name}</strong><br>
+          ${salon.area}<br>
+          ${salon.address}
+        `);
+    }
+  });
+
+  if (bounds.length > 0) {
+    map.fitBounds(bounds, {
+      padding: [30, 30]
+    });
+  }
+</script>

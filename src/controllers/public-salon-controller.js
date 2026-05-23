@@ -24,10 +24,11 @@ if (area) {
 }
 
       return h.view("public-salons-view", {
-        title: "Explore Dublin Nail Salons",
-        salons,
-        search,
-        area, 
+       title: "Explore Dublin Nail Salons",
+       salons,
+       salonsJson: JSON.stringify(salons),
+       search,
+       area,
       });
     },
   },

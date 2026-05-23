@@ -82,7 +82,9 @@ export const webRoutes = [
   { method: "GET", path: "/bookings", options: { auth: "session" }, handler: bookingController.index.handler },
   { method: "POST", path: "/bookings/add",options: { auth: "session" }, handler: bookingController.addBooking.handler,},
   { method: "POST", path: "/bookings/cancel/{id}",  options: { auth: "session" }, handler: bookingController.cancelBooking.handler,},
-
+  { method: "POST", path: "/bookings/{id}/accept", options: { auth: "session" }, handler: bookingController.accept.handler },
+{ method: "POST", path: "/bookings/{id}/reject", options: { auth: "session" }, handler: bookingController.reject.handler },
+  
   // Static file serving route for any paths not matched by the above routes, serving files from the "public" directory
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" }, }, options: { auth: false },},
 ];
