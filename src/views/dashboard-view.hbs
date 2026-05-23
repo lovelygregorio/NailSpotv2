@@ -107,22 +107,21 @@
           
       
   {{#if ../user.isAdmin}}
-  {{#if (eq status "Pending")}}
-    <div class="buttons mt-2">
-      <form action="/bookings/{{_id}}/accept" method="POST">
-        <button class="button is-success is-small">
-          Accept Booking
-        </button>
-      </form>
+  <div class="buttons mt-2">
+    <form action="/bookings/{{_id}}/accept" method="POST">
+      <button class="button is-success is-small">
+        Accept Booking
+      </button>
+    </form>
 
-      <form action="/bookings/{{_id}}/reject" method="POST">
-        <button class="button is-danger is-small">
-          Reject Booking
-        </button>
-      </form>
-    </div>
-  {{/if}}
+    <form action="/bookings/{{_id}}/reject" method="POST">
+      <button class="button is-danger is-small">
+        Reject Booking
+      </button>
+    </form>
+  </div>
 {{/if}}
+
         </div>
 
       </div>

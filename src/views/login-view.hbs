@@ -8,7 +8,11 @@
 {{> welcome-menu active="login"}}
 
 <section class="section">
+  
   <h1 class="title">Log in</h1>
+
+    <!-- NORMAL LOGIN -->
+
   <form action="/authenticate" method="POST">
     <div class="field">
       <label class="label">Email</label> <input class="input" type="text" placeholder="Enter email" name="email">
@@ -21,3 +25,15 @@
     </div>
   </form>
 </section>
+
+ <!-- GOOGLE LOGIN -->
+  <button
+    id="google-login"
+    class="button is-danger"
+  >
+    Login with Google
+  </button>
+
+</section>
+
+<script type="module" src="/js/firebase-login.js"></script>

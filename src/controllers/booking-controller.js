@@ -55,14 +55,14 @@ export const bookingController = {
   
   accept: {
   handler: async function (request, h) {
-    await db.bookingStore.updateBookingStatus(request.params.id, "Booked");
+    await db.bookingStore.updateBookingStatus(request.params.id, "Appoitment Confirmed");
     return h.redirect("/dashboard");
   },
 },
 
 reject: {
   handler: async function (request, h) {
-    await db.bookingStore.updateBookingStatus(request.params.id, "Rejected");
+    await db.bookingStore.updateBookingStatus(request.params.id, "Unavailable");
     return h.redirect("/dashboard");
   },
 },

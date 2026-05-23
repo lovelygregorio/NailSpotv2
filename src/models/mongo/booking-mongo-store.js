@@ -22,5 +22,15 @@ export const bookingMongoStore = {
       console.log("bad id");
     }
   },
+  async updateBookingStatus(id, status) {
+  const booking = await Booking.findById(id);
+
+  if (booking) {
+    booking.status = status;
+    await booking.save();
+  }
+
+  return booking;
+},
 
 };

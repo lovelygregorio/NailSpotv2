@@ -8,7 +8,7 @@
   <div class="container">
 
     <div class="navbar-brand">
-      <a class="navbar-item has-text-weight-bold" href="/dashboard">
+      <a class="navbar-item has-text-weight-bold" href="/about">
         NailSpot Dublin
       </a>
     </div>
@@ -16,12 +16,14 @@
     <div class="navbar-menu is-active">
 
       <div class="navbar-start">
+        {{#if user.isAdmin}}
         <a href="/dashboard" class="navbar-item">Dashboard</a>
+        <a href="/salons" class="navbar-item">My Salons</a>
+        <a href="/categories" class="navbar-item">Categories</a>
+        {{/if}}
         <a href="/public-salons" class="navbar-item">Explore Salons</a>
         <a href="/favourites" class="navbar-item">My ❤️ Favourites</a>
-        <a href="/salons" class="navbar-item">My Salons</a>
         <a href="/gallery" class="navbar-item">💅 Nail Gallery</a>
-        <a href="/categories" class="navbar-item">Categories</a>
         <a class="navbar-item" href="/bookings">Booking Board</a>
         <a href="/about" class="navbar-item">About</a>
         <a href="/account" class="navbar-item">Settings</a>

@@ -176,12 +176,20 @@ export const dashboardController = {
 
   // Handler function to display the dashboard view for the logged-in user
   index: {
-    handler: async function (request, h) {
-      const loggedInUser = request.auth.credentials;
-      const viewData = await buildDashboardView(loggedInUser);
-      return h.view("dashboard-view", viewData);
-    },
+  handler: async function (request, h) {
+
+    const loggedInUser = request.auth.credentials;
+
+    // Block non-admin users
+    if (!loggedInUser.isAdmin) {
+      return h.redirect("/public-salons");
+    }
+
+    const viewData = await buildDashboardView(loggedInUser);
+
+    return h.view("dashboard-view", viewData);
   },
+},
 
 
   // Handler function to add a new salon for the logged-in user
@@ -219,7 +227,7 @@ export const dashboardController = {
       };
 
       await db.salonStore.addSalon(salonData);
-      return h.redirect("/dashboard");
+      return h.redirect("/d");
     },
   },
 
@@ -271,4 +279,6 @@ export const dashboardController = {
       return h.redirect("/dashboard");
     },
   },
+
+
 };
