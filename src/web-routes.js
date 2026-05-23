@@ -73,6 +73,9 @@ export const webRoutes = [
   // Gallery-related routes for adding a photo to a salon's gallery and deleting a photo from the gallery
   { method: "GET", path: "/gallery", config: galleryController.index, },
   { method: "POST", path: "/gallery/add", config: galleryController.addPost, },
+  { method: "POST", path: "/gallery/delete/{id}", config: galleryController.deletePost,},
+  { method: "POST", path: "/gallery/comment/{id}", config: galleryController.addComment,},
+  { method: "POST", path: "/gallery/comment/delete/{postId}/{commentId}", options: { auth: "session",},handler: galleryController.deleteComment.handler,},
   
   // Static file serving route for any paths not matched by the above routes, serving files from the "public" directory
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" }, }, options: { auth: false },},

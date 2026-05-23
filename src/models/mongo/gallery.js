@@ -13,6 +13,13 @@ userid: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+ comments: [
+    {
+      username: String,
+      comment: String,
+    },
+ ]
+
 });
 
 export const GalleryPost = Mongoose.model("GalleryPost", gallerySchema);    

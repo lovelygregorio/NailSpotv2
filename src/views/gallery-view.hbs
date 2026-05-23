@@ -1,18 +1,21 @@
+{{> menu}}
+
 <section class="section">
   <div class="container">
 
-    <h1 class="title">💅 Community Nail Gallery</h1>
+    <h1 class="title">Community Nail Gallery</h1>
 
+    <!-- ADD POST -->
     <form action="/gallery/add" method="POST" class="box pink-card mb-5">
 
       <div class="field">
         <label class="label">Title</label>
-        <input class="input" name="title">
+        <input class="input" type="text" name="title" required>
       </div>
 
       <div class="field">
         <label class="label">Image URL</label>
-        <input class="input" name="image">
+        <input class="input" type="text" name="image" required>
       </div>
 
       <div class="field">
@@ -22,12 +25,12 @@
 
       <div class="field">
         <label class="label">Style</label>
-        <input class="input" name="style">
+        <input class="input" type="text" name="style">
       </div>
 
       <div class="field">
         <label class="label">Salon</label>
-        <input class="input" name="salonName">
+        <input class="input" type="text" name="salonName">
       </div>
 
       <button class="button is-primary">
@@ -36,20 +39,54 @@
 
     </form>
 
+    <!-- POSTS -->
     <div class="columns is-multiline">
 
       {{#each posts}}
+
         <div class="column is-one-third">
 
-          <div class="box pink-card">
+          <div class="box pink-card gallery-card" id="{{_id}}">
 
+            <!-- IMAGE -->
             <figure class="image mb-3">
               <img
                 src="{{image}}"
-                style="height:250px; object-fit:cover; border-radius:12px;"
+                alt="{{title}}"
+                style="height:250px; width:100%; object-fit:cover; border-radius:24px;"
               >
             </figure>
 
+            <!-- ACTION BUTTONS -->
+            <div class="buttons mt-2">
+
+              <button
+                type="button"
+                class="button is-small is-light"
+                onclick="copyGalleryLink('{{_id}}')"
+              >
+                🔗 Share
+              </button>
+
+              <a
+                href="{{image}}"
+                download
+                class="button is-small is-danger is-light"
+              >
+                📸 Save Photo
+              </a>
+
+              {{#if canDelete}}
+                <form action="/gallery/delete/{{_id}}" method="POST">
+                  <button type="submit" class="button is-small is-danger">
+                    Delete
+                  </button>
+                </form>
+              {{/if}}
+
+            </div>
+
+            <!-- POST DETAILS -->
             <h2 class="title is-5">{{title}}</h2>
 
             <p>{{caption}}</p>
@@ -62,11 +99,58 @@
               <strong>Salon:</strong> {{salonName}}
             </p>
 
+            <!-- ADD COMMENT -->
+            <form
+              action="/gallery/comment/{{_id}}"
+              method="POST"
+              class="mt-4"
+            >
+
+              <div class="field">
+                <input
+                  class="input is-small"
+                  type="text"
+                  name="comment"
+                  placeholder="Add a comment..."
+                  required
+                >
+              </div>
+
+              <button type="submit" class="button is-small is-link">
+                Comment
+              </button>
+
+            </form>
+
+            <!-- COMMENTS -->
+            {{#each comments}}
+
+              <div class="box mt-3">
+
+                <strong>{{username}}</strong>
+
+                <p>{{comment}}</p>
+
+
+              </div>
+
+            {{/each}}
+
           </div>
+
         </div>
+
       {{/each}}
 
     </div>
 
   </div>
 </section>
+
+<script>
+  function copyGalleryLink(id) {
+    const link = `${window.location.origin}/gallery#${id}`;
+    navigator.clipboard.writeText(link);
+    alert("Gallery post link copied!");
+  }
+</script>
