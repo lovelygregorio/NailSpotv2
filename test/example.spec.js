@@ -8,12 +8,12 @@ test('user can login', async ({ page }) => {
 
   await page.click('text=Login');
 
-  await page.fill('input[name="email"]', 'DemoUser1@gmail.com');
+  await page.fill('input[name="email"]', 'publicuser1@gmail.com');
 
   await page.fill('input[name="password"]', '123456');
 
   await page.click('button[type="submit"]');
 
-  await expect(page).toHaveURL(/dashboard/);
+  await expect(page).toHaveURL(/public-salons/);
 
 });
