@@ -1,16 +1,25 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { auth } from "./firebase.js";
 
+import {
+  GoogleAuthProvider,
+  signInWithPopup
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDwMSdXk0r4wIwx3MGQQhcSRh1zQlVNiYQ",
-  authDomain: "nailspot-81f2a.firebaseapp.com",
-  projectId: "nailspot-81f2a",
-  storageBucket: "nailspot-81f2a.firebasestorage.app",
-  messagingSenderId: "363025647966",
-  appId: "1:363025647966:web:8bb4a9bb8ceb39a62de7cf",
-  measurementId: "G-HLQBMWBS15"
-};
+console.log("Firebase login script loaded");
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const googleLoginButton = document.querySelector("#google-login");
+console.log("Google button:", googleLoginButton);
+
+googleLoginButton.addEventListener("click", async () => {
+  const provider = new GoogleAuthProvider();
+
+  try {
+    const result = await signInWithPopup(auth, provider);
+    console.log("Google login successful:", result.user);
+
+    window.location.href = "/dashboard";
+  } catch (error) {
+    console.error("Google login error:", error);
+    alert("Google login failed");
+  }
+});

@@ -8,6 +8,8 @@
 import { userApi } from "./api/user-api.js";
 import { salonApi } from "./api/salon-api.js";
 import { serviceApi } from "./api/service-api.js";
+import { galleryApi } from "./api/gallery-api.js";
+import { bookingApi } from "./api/booking-api.js";
 
 // API route definitions connecting HTTP methods and paths to controller configurations
 export const apiRoutes = [
@@ -33,4 +35,20 @@ export const apiRoutes = [
   { method: "POST", path: "/api/salons/{id}/services", config: serviceApi.create },
   { method: "DELETE", path: "/api/services", config: serviceApi.deleteAll },
   { method: "DELETE", path: "/api/services/{id}", config: serviceApi.deleteOne },
+
+  // Gallery API endpoints
+{ method: "GET", path: "/api/gallery", config: galleryApi.find },
+{ method: "GET", path: "/api/gallery/{id}", config: galleryApi.findOne },
+{ method: "POST", path: "/api/gallery", config: galleryApi.create },
+{ method: "DELETE", path: "/api/gallery", config: galleryApi.deleteAll },
+{ method: "DELETE", path: "/api/gallery/{id}", config: galleryApi.deleteOne },
+{ method: "POST", path: "/api/gallery/{id}/comments", config: galleryApi.addComment },
+
+// Booking API endpoints
+{ method: "GET", path: "/api/bookings", config: bookingApi.find },
+{ method: "GET", path: "/api/bookings/{id}", config: bookingApi.findOne },
+{ method: "POST", path: "/api/bookings", config: bookingApi.create },
+{ method: "DELETE", path: "/api/bookings", config: bookingApi.deleteAll },
+{ method: "DELETE", path: "/api/bookings/{id}", config: bookingApi.deleteOne },
+
 ];
