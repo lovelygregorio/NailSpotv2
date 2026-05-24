@@ -110,6 +110,11 @@ export const accountsController = {
         email: user.email,
       });
 
+      // If the user is an admin, redirect to the admin dashboard; otherwise, redirect to the public salons page
+      if (user.isAdmin) {
+    return h.redirect("/dashboard");
+  }
+
       return h.redirect("/public-salons");
     },
   },
