@@ -1,3 +1,6 @@
+// JavaScript code for handling Firebase authentication and Google login in the NailSpot application.
+// This script is responsible for managing user authentication using Firebase and enabling users to log in with their Google accounts. It listens for click events on the Google login button, initiates the sign-in process with Firebase, and handles the authentication flow. If the login is successful, the user is redirected to the dashboard; if there is an error during login, an error message is displayed.
+
 import { auth } from "./firebase.js";
 
 import {

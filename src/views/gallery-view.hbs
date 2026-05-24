@@ -1,3 +1,13 @@
+<!--  
+  Handlebars template for the gallery view in the NailSpot application. 
+  This template renders a community nail gallery where users can share their 
+  nail art inspirations by submitting new posts with images, captions, styles,
+   and salon information. The template includes a form for adding new gallery posts, 
+   as well as a display of existing posts with options to share the post link, save the 
+   photo, and delete the post if the user has permission. Each post also includes 
+   a section for adding comments and viewing existing comments from other users. 
+  --> 
+
 {{> menu}}
 
 <section class="section">
@@ -147,6 +157,7 @@
   </div>
 </section>
 
+ <!--JavaScript function to copy gallery post link to clipboard -->
 <script>
   function copyGalleryLink(id) {
     const link = `${window.location.origin}/gallery#${id}`;

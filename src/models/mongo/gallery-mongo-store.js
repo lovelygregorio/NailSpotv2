@@ -1,5 +1,12 @@
+/** * MongoDB store for managing gallery post data.
+ *
+ * This module defines the `galleryMongoStore` object, which provides methods for interacting with the MongoDB database to perform CRUD operations on gallery post data. It includes methods to retrieve all posts, add a new post, get a post by its ID, add a comment to a post, delete a comment from a post, and delete a post. The store uses Mongoose models to interact with the MongoDB collection for gallery posts.
+ * 
+ */ 
+
 import { GalleryPost } from "./gallery.js";
 
+// MongoDB store object for managing gallery post data
 export const galleryMongoStore = {
   async getAllPosts() {
     return GalleryPost.find().lean();

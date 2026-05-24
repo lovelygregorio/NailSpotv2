@@ -1,3 +1,8 @@
+/** * MongoDB store for managing review data.
+ *
+ * This module defines the `reviewMongoStore` object, which provides methods for interacting with the MongoDB database to perform CRUD operations on review data. It includes methods to add a new review, get reviews by salon ID, delete a review by ID, and delete reviews by salon ID. The store uses Mongoose models to interact with the MongoDB collection for reviews.
+ * 
+ */
 import { Review } from './review.js';
 
 export const reviewMongoStore = { // Define the reviewMongoStore object

@@ -89,13 +89,20 @@ export const accountsController = {
     handler: async function (request, h) {
       const user = await db.userStore.getUserByEmail(request.payload.email);
 
-      // If no user is found with the given email or if the password does not match, return an error
-      if (!user || user.password !== request.payload.password) {
-        return h.view("login-view", {
-          title: "Login failed",
-          errors: [{ message: "Invalid email or password" }],
-        }).takeover().code(401);
-      }
+       if (!user) {
+       return h.view("login-view", {
+      title: "Login failed",
+      errors: [{ message: "Invalid email or password" }],
+    }).takeover().code(401);
+  }
+
+      if (String(user.password) !== String(request.payload.password)) {
+       return h.view("login-view", {
+      title: "Login failed",
+      errors: [{ message: "Invalid email or password" }],
+     }).takeover().code(401);
+    }
+
 
       // Set the user credentials in the cookie for authentication and redirect to the dashboard
       request.cookieAuth.set({
@@ -103,7 +110,7 @@ export const accountsController = {
         email: user.email,
       });
 
-      return h.redirect("/dashboard");
+      return h.redirect("/public-salons");
     },
   },
 

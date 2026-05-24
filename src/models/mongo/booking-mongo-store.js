@@ -1,5 +1,12 @@
+/** * MongoDB store for managing booking data.
+ *
+ * This module defines the `bookingMongoStore` object, which provides methods for interacting with the MongoDB database to perform CRUD operations on booking data. It includes methods to retrieve all bookings, add a new booking, get a booking by its ID, delete a booking, and update the status of a booking. The store uses Mongoose models to interact with the MongoDB collection for bookings.
+ * 
+ */
+
 import { Booking } from "./booking.js";
 
+// MongoDB store object for managing booking data
 export const bookingMongoStore = {
 
   async getAllBookings() {

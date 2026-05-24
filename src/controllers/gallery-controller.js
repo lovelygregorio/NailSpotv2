@@ -1,5 +1,12 @@
+/** * Controller for handling gallery-related operations.
+ * This controller manages the gallery functionality, including displaying posts,
+ * adding new posts, deleting posts, adding comments, and deleting comments.
+ * It interacts with the database to retrieve and manipulate gallery data,
+ **/
+
 import { db } from "../models/db.js";
 
+// Controller object containing all gallery-related handlers
 export const galleryController = {
   index: {
     handler: async function (request, h) {
@@ -27,6 +34,7 @@ export const galleryController = {
     },
   },
 
+  // Handler function to add a new post to the gallery for the logged-in user
   addPost: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
@@ -46,6 +54,7 @@ export const galleryController = {
     },
   },
 
+  // Handler function to delete a post from the gallery for the logged-in user
   deletePost: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
@@ -67,6 +76,7 @@ export const galleryController = {
     },
   },
 
+  // Handler function to add a comment to a post in the gallery for the logged-in user
   addComment: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
@@ -87,6 +97,7 @@ export const galleryController = {
     },
   },
 
+  // Handler function to delete a comment from a post in the gallery for the logged-in user
   deleteComment: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;

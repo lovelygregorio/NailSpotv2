@@ -1,3 +1,12 @@
+/** * Controller for handling booking-related operations.
+ *
+ * This controller manages the booking process, 
+ * including displaying bookings,  
+ * adding new bookings, and canceling existing bookings.
+ * It interacts with the database to retrieve and manipulate booking data, 
+ * and renders appropriate views for the user.        
+ * 
+ */
 import { db } from "../models/db.js";
 
 export const bookingController = {
@@ -22,6 +31,7 @@ export const bookingController = {
     },
   },
 
+  // Handler function to add a new booking for the logged-in user
   addBooking: {
     handler: async function (request, h) {
 
@@ -44,6 +54,7 @@ export const bookingController = {
     },
   },
 
+  // Handler function to cancel an existing booking for the logged-in user
   cancelBooking: {
     handler: async function (request, h) {
 
