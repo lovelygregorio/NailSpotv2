@@ -4,17 +4,17 @@ Live Application (AWS EC2 Deployment) http://52.7.171.54:3000/
 Backup Deployment (Render) https://nailspotv2.onrender.com
 GitHub Repository https://github.com/lovelygregorio/nailspot2.git
 
-==================================================
-PROJECT OVERVIEW
-==================================================
+
+## PROJECT OVERVIEW
+
 
 NailSpot Dublin is a full-stack web application designed to help users discover nail salons and nail services around Dublin. The platform allows users to create accounts, browse salons, explore available services, save favourite salons, upload nail inspirations, leave reviews, and manage salon bookings through an interactive community-based system.
 
 This project was developed for the SETU Full Stack Web Development module. While some structural concepts and testing configurations were inspired by the Playtime 0.9 project demonstrated during lectures, the application idea, user experience, data models, APIs, database structure, features, and user interface were fully redesigned and customised for a modern nail salon discovery and booking platform.
 
-==================================================
-MAIN FEATURES
-==================================================
+
+## MAIN FEATURES
+
 
 - User registration and secure authentication
 - JWT authentication and session management
@@ -33,9 +33,8 @@ MAIN FEATURES
 - Admin dashboard for managing users, salons, and bookings
 - AWS EC2 cloud deployment with Render backup deployment
 
-==================================================
-TECHNOLOGIES USED
-==================================================
+
+## TECHNOLOGIES USED
 
 Backend
 - Node.js
@@ -75,9 +74,9 @@ DevOps and Deployment
 - Git Flow
 - Elastic IP
 
-==================================================
-INSTALLATION
-==================================================
+
+## INSTALLATION
+
 
 Clone the repository:
 
@@ -91,9 +90,8 @@ Install dependencies:
 
 npm install
 
-==================================================
-ENVIRONMENT VARIABLES
-==================================================
+## ENVIRONMENT VARIABLES
+
 
 Create a .env file in the root directory and configure the following variables:
 
@@ -103,9 +101,9 @@ COOKIE_PASSWORD=your_secure_cookie_password
 JWT_SECRET=your_jwt_secret
 MONGO_URL=your_mongodb_connection_string
 
-==================================================
-RUNNING THE APPLICATION
-==================================================
+
+## RUNNING THE APPLICATION
+
 
 Start the server:
 
@@ -115,9 +113,9 @@ The application will run on:
 
 http://localhost:3000
 
-==================================================
-RUNNING TESTS
-==================================================
+
+## RUNNING TESTS
+
 
 To run automated tests:
 
@@ -133,9 +131,9 @@ The test suite includes:
 - Model tests for Salon, Service, Booking, and User
 - Basic and enhanced Playwright end-to-end testing
 
-==================================================
-AWS EC2 DEPLOYMENT
-==================================================
+
+ ## AWS EC2 DEPLOYMENT
+
 
 The NailSpot Dublin application is deployed on Amazon Web Services (AWS) EC2, allowing the application to run on a cloud server and be accessed online.
 
@@ -143,17 +141,16 @@ An AWS Elastic IP address was allocated and associated with the EC2 instance to 
 
 PM2 was used for process management to keep the application running continuously in the background.
 
-==================================================
-RENDER DEPLOYMENT (BACKUP)
-==================================================
+
+## RENDER DEPLOYMENT (BACKUP)
+
 
 Due to deployment configuration and permission issues encountered during the EC2 setup, the application was also deployed on Render as a backup hosting solution.
 
 This ensured continuous availability of the application while demonstrating deployment across multiple cloud platforms.
 
-==================================================
-ENHANCEMENT FEATURES
-==================================================
+## ENHANCEMENT FEATURES
+
 
 Level 1
 - Private dashboard functionality
@@ -190,9 +187,9 @@ Level 5 (Future Enhancements)
 - Load balancing and auto scaling
 - Analytics and reporting dashboard
 
-==================================================
-FUTURE ENHANCEMENTS
-==================================================
+
+## FUTURE ENHANCEMENTS
+
 
 - Full TypeScript migration
 - AI-powered salon recommendations
@@ -203,9 +200,9 @@ FUTURE ENHANCEMENTS
 - Analytics and reporting dashboard
 - Advanced customer notification system
 
-==================================================
-AUTHOR
-==================================================
+## AUTHOR
+
+
 Lovely Gregorio
 SETU Higher Diploma in Computer Science
 May 2026
