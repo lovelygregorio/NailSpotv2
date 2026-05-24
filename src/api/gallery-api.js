@@ -1,4 +1,4 @@
-/** * API for bookings */
+/** * API for GALLERY posts */
 
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
